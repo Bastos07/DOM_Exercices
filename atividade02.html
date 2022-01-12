@@ -225,6 +225,9 @@
             let href = this.getAttribute('href')
             console.log(href);
 
+            // Desafio 1. Fecha todas as seções
+            closeAll(href);
+
             // 13. Exibe o valor de 'class' da div cujo id = 'href' do elemento clicado
             let myDiv = document.getElementById(href);
             console.log(myDiv.getAttribute('class'));
@@ -245,6 +248,29 @@
             }
             // 10. Bloqueia a ação do HTML
             return false;
+        }
+
+        // Desafio 1. Fecha todas as seções abertas
+        function closeAll(href) {
+
+            // obtém toda sas seções
+            var items = document.getElementsByClassName('item');
+
+            // iterar as seções
+            for (let i = 0; i < items.length; i++) {
+
+                console.log(document.querySelector(`[href=${href}]`));
+
+                // Desafio 2. Não modifica a seção atual.
+                if (items[i].getAttribute('id') !== href) {
+
+                    // Oculta todas as seções (exceto a clicada, identificada por 'href')
+                    items[i].classList.remove('show');
+
+                    // Troca o ícone do botão relacionado com essa seção
+                    document.querySelector(`[href=${items[i].getAttribute('id')}]`).innerHTML = '&#8690;';
+                }
+            }
         }
 
     </script>
